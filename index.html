@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUAGU CO Chocolate – Interactive Premium Catalog</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(to right, #fefcf9, #fff3e0);
+  color: #2b2b2b;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.slide {
+  display: none;
+  opacity: 0;
+  padding: 50px 40px;
+  max-width: 1200px;
+  margin: 30px auto;
+  background: rgba(255,255,255,0.95);
+  border-radius: 15px;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.15);
+  transition: opacity 1s ease-in-out;
+}
+
+.active-slide {
+  display: block;
+  opacity: 1;
+}
+
+h1 { font-family: 'Playfair Display', serif; font-size: 54px; text-align: center; color: #5a2c2c; margin-bottom: 30px; }
+h2 { font-family: 'Playfair Display', serif; font-size: 36px; color: #5a2c2c; margin-bottom: 20px; }
+h3 { font-size: 22px; color: #333; margin-bottom: 12px; }
+p { font-size: 16px; margin-bottom: 12px; }
+.tagline { font-size: 30px; text-align: center; color: #6b3a3a; margin-bottom: 40px; font-weight: 600; }
+
+.hero-image, .full-image, .product-image {
+  width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: transform 0.4s;
+}
+.hero-image:hover, .full-image:hover, .product-image:hover { transform: scale(1.05); }
+
+.grid {
+  display: grid;
+  gap: 35px;
+  margin-top: 30px;
+}
+
+/* Core Chocolate Bars: 3 columnas */
+.grid-core {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Layout para sabores exóticos */
+.exotic-top {
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+.exotic-bottom {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.product {
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 15px;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+.product.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+.product ul { list-style-type: disc; padding-left: 22px; font-size: 15px; text-align: left; margin-top: 12px; }
+
+.nav-btn {
+  cursor: pointer;
+  background-color: #5a2c2c;
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  margin: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+.nav-btn:hover { background-color: #7a3a3a; }
+
+.footer { font-size: 16px; margin-top: 40px; text-align: center; color: #4b2e2e; }
+.disclaimer { font-size: 14px; color: #4b2e2e; margin-top: 25px; font-style: italic; text-align: center; }
+
+/* Miniaturas con efecto zoom */
+.thumbnail-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.thumbnail {
+  width: 100px;
+  height: 70px;
+  margin: 5px;
+  cursor: pointer;
+  object-fit: cover;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  transition: border 0.3s, transform 0.3s;
+}
+.thumbnail:hover { transform: scale(1.1); border-color: #5a2c2c; }
+.thumbnail.active-thumb { border-color: #5a2c2c; }
+
+@media (max-width: 1024px){
+  .grid-core { grid-template-columns: 1fr; }
+  .exotic-top, .exotic-bottom { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- SLIDES -->
+<div class="slide active-slide">
+<h1>SUAGU CO CHOCOLATE</h1>
+<div class="tagline">Fine Colombian Chocolate</div>
+<img src="hero.jpg" alt="Suagu Co Chocolate Collection" class="hero-image">
+<p style="text-align:center;">Made in Colombia</p>
+</div>
+
+<div class="slide">
+<h2>Crafted in Colombia</h2>
+<p>SUAGU CO Chocolate is crafted in Colombia using fine-flavor cacao and carefully selected ingredients. Our chocolate bars combine authentic origin with bold flavors designed for premium retail.</p>
+<p>Created for specialty and gourmet retailers seeking clean labels, strong shelf presence, and consistent quality.</p>
+<img src="brand.jpg" alt="Colombian cacao and craftsmanship" class="hero-image">
+</div>
+
+<div class="slide">
+<h2>Core Chocolate Bars</h2>
+<p>70 g (2.49 oz) · Chocolate Bar · Box Packaging</p>
+<div class="grid grid-core">
+  <div class="product"><img src="65-dark.jpg" class="product-image"><h3>65% Dark Chocolate</h3><p>Smooth and balanced dark chocolate</p></div>
+  <div class="product"><img src="70-dark.jpg" class="product-image"><h3>70% Dark Chocolate</h3><p>Perfect balance between intensity and smoothness.</p></div>
+  <div class="product"><img src="85-dark.jpg" class="product-image"><h3>85% Dark Chocolate</h3><p>Rich and intense dark chocolate.</p></div>
+</div>
+</div>
+
+<div class="slide">
+<h2>Sugar Free Line</h2>
+<div class="grid">
+  <div class="product"><img src="60-sugarfree.jpg" class="product-image"><h3>60% Dark Chocolate – Sugar Free</h3><p>No added sugar. Ideal for health-conscious consumers.</p></div>
+</div>
+</div>
+
+<div class="slide">
+<h2>Exotic Flavor Collection</h2>
+<p>Dark chocolate infused with natural Colombian flavors.</p>
+
+<!-- Top row: Coffee & Maracuya -->
+<div class="grid exotic-top">
+  <div class="product"><img src="coffee.jpg" class="product-image"><h3>Coffee (Cappuccino)</h3></div>
+  <div class="product"><img src="maracuya.jpg" class="product-image"><h3>Maracuya</h3></div>
+</div>
+
+<!-- Bottom row: Uchuva & Lulo -->
+<div class="grid exotic-bottom">
+  <div class="product"><img src="uchuva.jpg" class="product-image"><h3>Uchuva</h3></div>
+  <div class="product"><img src="lulo.jpg" class="product-image"><h3>Lulo</h3></div>
+</div>
+
+<img src="varios.jpg" class="full-image">
+</div>
+
+<div class="slide">
+<h2>Retail Information</h2>
+<ul>
+  <li>Country of origin: Colombia</li>
+  <li>Storage: Cool and dry place</li>
+  <li>Private label: Available upon request</li>
+</ul>
+<div class="footer">
+<strong>USA Sales Representative</strong><br>
+Florida, USA<br>
+Email: solutionsnd.llc@gmail.com<br>
+Phone: +1 (305) 500-1610
+</div>
+<div class="disclaimer">
+*Please note: Chocolate percentages and product formats options can be customized upon client request. All offerings can be tailored to meet your specific preferences.*
+</div>
+</div>
+
+<!-- NAVIGATION -->
+<div style="text-align:center; margin:20px 0;">
+<button class="nav-btn" onclick="prevSlide()">&#10094; Previous</button>
+<button class="nav-btn" onclick="nextSlide()">Next &#10095;</button>
+<button class="nav-btn" id="toggleAuto">Pause</button>
+</div>
+
+<!-- THUMBNAILS -->
+<div class="thumbnail-container">
+<img src="hero.jpg" class="thumbnail active-thumb" onclick="goToSlide(0)">
+<img src="brand.jpg" class="thumbnail" onclick="goToSlide(1)">
+<img src="65-dark.jpg" class="thumbnail" onclick="goToSlide(2)">
+<img src="60-sugarfree.jpg" class="thumbnail" onclick="goToSlide(3)">
+<img src="coffee.jpg" class="thumbnail" onclick="goToSlide(4)">
+<img src="maracuya.jpg" class="thumbnail" onclick="goToSlide(4)">
+<img src="uchuva.jpg" class="thumbnail" onclick="goToSlide(4)">
+<img src="lulo.jpg" class="thumbnail" onclick="goToSlide(4)">
+<img src="varios.jpg" class="thumbnail" onclick="goToSlide(4)">
+<img src="hero.jpg" class="thumbnail" onclick="goToSlide(5)">
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const thumbnails = document.querySelectorAll('.thumbnail');
+let auto = true;
+let interval = setInterval(nextSlide, 7000);
+
+function showSlide(index) {
+  slides.forEach(s => s.classList.remove('active-slide'));
+  slides[index].classList.add('active-slide');
+  
+  const slideProducts = slides[index].querySelectorAll('.product');
+  slideProducts.forEach(p=>p.classList.remove('show'));
+  setTimeout(()=>slideProducts.forEach(p=>p.classList.add('show')), 200);
+  
+  thumbnails.forEach(t => t.classList.remove('active-thumb'));
+  if(thumbnails[index]) thumbnails[index].classList.add('active-thumb');
+}
+
+function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); }
+function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); }
+function goToSlide(index){ currentSlide = index; showSlide(currentSlide); }
+
+document.getElementById('toggleAuto').addEventListener('click', () => {
+  auto = !auto;
+  if(auto){ interval = setInterval(nextSlide, 7000); document.getElementById('toggleAuto').textContent = 'Pause'; }
+  else { clearInterval(interval); document.getElementById('toggleAuto').textContent = 'Play'; }
+});
+
+showSlide(currentSlide);
+</script>
+
+</body>
+</html>
