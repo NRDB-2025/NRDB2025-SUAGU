@@ -258,6 +258,35 @@ document.getElementById('toggleAuto').addEventListener('click', () => {
 
 showSlide(currentSlide);
 </script>
+ <script>
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const goto = params.get("goto");
+    if (!goto) return;
+
+    // If your site uses slides, map sections to slide indexes:
+    // Adjust these numbers if your slide order is different.
+    const slideIndexMap = {
+      chocolate: 0,
+      juju: 5
+    };
+
+    // Try to switch slides first (if those functions exist)
+    const targetIndex = slideIndexMap[goto];
+
+    if (typeof targetIndex === "number" && typeof showSlide === "function") {
+      currentSlide = targetIndex;
+      showSlide(currentSlide);
+    }
+
+    // Then scroll to the anchor
+    setTimeout(() => {
+      const el = document.getElementById(goto);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 250);
+  })();
+</script>
+
 
 </body>
 </html>
