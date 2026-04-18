@@ -146,10 +146,11 @@ p { font-size: 16px; margin-bottom: 12px; }
   </a>
 
   <!-- BOTÓN SECUNDARIO (credibilidad) -->
-  <a href="?goto=press"
-     style="background:transparent; color:#000; padding:14px 28px; text-decoration:none; border:1px solid #000; border-radius:8px; font-size:14px; letter-spacing:1px;">
-     AS FEATURED IN PORTAFOLIO
-  </a>
+ <a href="#"
+   onclick="goToSlideById('press'); return false;"
+   style="background:transparent; color:#000; padding:14px 28px; text-decoration:none; border:1px solid #000; border-radius:8px; font-size:14px; letter-spacing:1px;">
+   AS FEATURED IN PORTAFOLIO
+</a>
 
 </div>
 
@@ -292,48 +293,51 @@ function showSlide(index) {
   if(thumbnails[index]) thumbnails[index].classList.add('active-thumb');
 }
 
-function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); }
-function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); }
-function goToSlide(index){ currentSlide = index; showSlide(currentSlide); }
+function nextSlide() { 
+  currentSlide = (currentSlide + 1) % slides.length; 
+  showSlide(currentSlide); 
+}
+
+function prevSlide() { 
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length; 
+  showSlide(currentSlide); 
+}
+
+function goToSlide(index){ 
+  currentSlide = index; 
+  showSlide(currentSlide); 
+}
+
+/* 🔥 NUEVA FUNCIÓN (LA IMPORTANTE) */
+function goToSlideById(slideId) {
+  let targetIndex = -1;
+
+  slides.forEach((slide, index) => {
+    if (slide.id === slideId) {
+      targetIndex = index;
+    }
+  });
+
+  if (targetIndex !== -1) {
+    currentSlide = targetIndex;
+    showSlide(currentSlide);
+  }
+}
 
 document.getElementById('toggleAuto').addEventListener('click', () => {
   auto = !auto;
-  if(auto){ interval = setInterval(nextSlide, 7000); document.getElementById('toggleAuto').textContent = 'Pause'; }
-  else { clearInterval(interval); document.getElementById('toggleAuto').textContent = 'Play'; }
+  if(auto){ 
+    interval = setInterval(nextSlide, 7000); 
+    document.getElementById('toggleAuto').textContent = 'Pause'; 
+  }
+  else { 
+    clearInterval(interval); 
+    document.getElementById('toggleAuto').textContent = 'Play'; 
+  }
 });
 
 showSlide(currentSlide);
 </script>
- <script>
-  (function () {
-    const params = new URLSearchParams(window.location.search);
-    const goto = params.get("goto");
-    if (!goto) return;
-
-    // If your site uses slides, map sections to slide indexes:
-    // Adjust these numbers if your slide order is different.
-    const slideIndexMap = {
-      chocolate: 0,
-      juju: 5
-      press: 12
-    };
-
-    // Try to switch slides first (if those functions exist)
-    const targetIndex = slideIndexMap[goto];
-
-    if (typeof targetIndex === "number" && typeof showSlide === "function") {
-      currentSlide = targetIndex;
-      showSlide(currentSlide);
-    }
-
-    // Then scroll to the anchor
-    setTimeout(() => {
-      const el = document.getElementById(goto);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 250);
-  })();
-</script>
-
 
 </body>
 </html>
